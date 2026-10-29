@@ -1,0 +1,8 @@
+{
+	"mcpServers": {
+		"ghidra-local-mcp": {
+			"type": "stdio",
+			"command": "bridge-mcp-ghidra"
+		}
+	}
+}

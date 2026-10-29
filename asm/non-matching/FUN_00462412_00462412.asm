@@ -1,0 +1,27 @@
+; Function: FUN_00462412
+; Address:  00462412
+; Signature: undefined FUN_00462412(int param_1)
+
+    PUSH     EBP
+    MOV      EBP, ESP
+    SUB      ESP, 0x8
+    PUSH     EBX
+    PUSH     ESI
+    PUSH     EDI
+    MOV      EAX, [0x004f1664]
+    MOV      dword ptr [EBP + -0x4], EAX
+    MOV      EAX, [0x004f15e0]
+    MOV      dword ptr [EBP + -0x8], EAX
+    MOV      EAX, dword ptr [EBP + -0x8]
+    XOR      ECX, ECX
+    MOV      CL, byte ptr [EAX + 0x7c]
+    TEST     ECX, ECX
+    JNZ      LAB_00462445
+    MOV      EAX, dword ptr [EBP + 0x8]
+    MOV      dword ptr [EAX + 0x4], 0x46244a
+LAB_00462445:
+    POP      EDI
+    POP      ESI
+    POP      EBX
+    LEAVE    
+    RET      

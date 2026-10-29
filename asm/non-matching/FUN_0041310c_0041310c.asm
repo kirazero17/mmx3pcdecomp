@@ -1,0 +1,34 @@
+; Function: FUN_0041310c
+; Address:  0041310c
+; Signature: undefined FUN_0041310c(int param_1)
+
+    PUSH     EBP
+    MOV      EBP, ESP
+    SUB      ESP, 0x4
+    PUSH     EBX
+    PUSH     ESI
+    PUSH     EDI
+    MOV      EAX, dword ptr [EBP + 0x8]
+    PUSH     EAX
+    CALL     0x0042c01b
+    ADD      ESP, 0x4
+    MOV      dword ptr [EBP + -0x4], EAX
+    CMP      dword ptr [EBP + -0x4], 0x0
+    JNZ      LAB_00413133
+    JMP      LAB_0041314f
+LAB_00413133:
+    MOV      EAX, dword ptr [EBP + -0x4]
+    PUSH     EAX
+    MOV      EAX, dword ptr [EBP + 0x8]
+    PUSH     EAX
+    CALL     0x00413154
+    ADD      ESP, 0x8
+    MOV      EAX, dword ptr [EBP + -0x4]
+    MOV      byte ptr [EAX + 0xd], 0x0
+    JMP      LAB_0041314f
+LAB_0041314f:
+    POP      EDI
+    POP      ESI
+    POP      EBX
+    LEAVE    
+    RET      

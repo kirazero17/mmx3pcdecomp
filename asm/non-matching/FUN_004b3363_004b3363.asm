@@ -1,0 +1,22 @@
+; Function: FUN_004b3363
+; Address:  004b3363
+; Signature: undefined FUN_004b3363(int param_1)
+
+    PUSH     EBP
+    MOV      EBP, ESP
+    PUSH     EBX
+    PUSH     ESI
+    PUSH     EDI
+    MOV      EAX, dword ptr [EBP + 0x8]
+    MOV      byte ptr [EAX + 0x1], 0x1
+    MOV      EAX, dword ptr [EBP + 0x8]
+    PUSH     EAX
+    CALL     0x004b33a2
+    ADD      ESP, 0x4
+    JMP      LAB_004b3381
+LAB_004b3381:
+    POP      EDI
+    POP      ESI
+    POP      EBX
+    LEAVE    
+    RET      
