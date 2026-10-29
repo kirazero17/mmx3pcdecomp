@@ -106,8 +106,6 @@ def main():
         result = subprocess.run(command, cwd=str(root))
         if result.returncode != 0:
             raise SystemExit(result.returncode)
-        if object_file.exists():
-            object_file.unlink()
 
 
 if __name__ == "__main__":
