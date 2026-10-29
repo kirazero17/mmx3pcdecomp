@@ -87,7 +87,8 @@ int entry(void)
             }
         }
     
-        STARTUPINFOA startupInfo = {0};
+        STARTUPINFOA startupInfo;
+        startupInfo.dwFlags = 0;
         GetStartupInfoA(&startupInfo);
     
         int showCommand = 10;
