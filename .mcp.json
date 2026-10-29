@@ -2,7 +2,10 @@
 	"mcpServers": {
 		"ghidra-local-mcp": {
 			"type": "stdio",
-			"command": "bridge-mcp-ghidra"
+			"command": "bridge-mcp-ghidra",
+			"env": {
+				"GHIDRA_MCP_ALLOW_SCRIPTS": "1"
+			}
 		}
 	}
 }

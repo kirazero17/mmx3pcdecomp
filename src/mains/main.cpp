@@ -17,10 +17,10 @@ extern "C" {
     void __cdecl FUN_004e4b50();
     void __cdecl FUN_004e4b40();
     LPSTR __cdecl FUN_004e4690();
-    void __cdecl FUN_004e3f50(unsigned int status);
-    void __cdecl FUN_004e4410();
+    void __cdecl exit_wrapper(unsigned int status);
+    void __cdecl __setargv();
     void __cdecl FUN_004e4330();
-    int __cdecl FUN_004e3f20();
+    int __cdecl __cinit(void);
 }
 
 int __stdcall init_gui_window(HINSTANCE instance, HINSTANCE previousInstance,
@@ -44,16 +44,15 @@ int entry(void)
     // and     $0xff,%eax
     // ==========================
     // but somehow, removing/commenting it out gives slightly higher matching percentage (by 0.x%)
-    majorVersion = osVersion & 0xFF;
+    majorVersion = *((BYTE *)&osVersion);
     platformVersion = (majorVersion << 8) + minorVersion;
+    FUN_004e4ed0();
+    
+    if (__mtinit() == 0) {
+        __amsg_exit(16);
+    }
     
     __try {
-        FUN_004e4ed0();
-        
-        if (__mtinit() == 0) {
-            __amsg_exit(16);
-        }
-    
         FUN_004e4b50();
         FUN_004e4b40();
         
@@ -61,12 +60,12 @@ int entry(void)
         environmentBlock = FUN_004e4690();
         
         if (environmentBlock == NULL || commandLine == NULL) {
-            FUN_004e3f50((unsigned int)-1);
+            exit_wrapper((unsigned int)-1);
         }
     
-        FUN_004e4410();
+        __setargv();
         FUN_004e4330();
-        FUN_004e3f20();
+        __cinit();
     
         LPSTR applicationArguments = commandLine;
         if (*applicationArguments == '"') {
@@ -98,7 +97,7 @@ int entry(void)
     
         HINSTANCE instance = GetModuleHandleA(NULL);
         int status = init_gui_window(instance, NULL, applicationArguments, showCommand);
-        FUN_004e3f50((unsigned int)status);
+        exit_wrapper((unsigned int)status);
         return status;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
