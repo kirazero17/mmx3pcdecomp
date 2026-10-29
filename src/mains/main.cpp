@@ -21,18 +21,33 @@ extern "C" {
     void __cdecl FUN_004e4410();
     void __cdecl FUN_004e4330();
     int __cdecl FUN_004e3f20();
-    int __cdecl FUN_00404240(HINSTANCE instance, HINSTANCE previousInstance,
-                            LPSTR commandLine, int showCommand);
 }
+
+int __stdcall init_gui_window(HINSTANCE instance, HINSTANCE previousInstance,
+                              LPSTR commandLine, int showCommand);
 
 int entry(void)
 {
-    __try {
-        DWORD version = GetVersion();
-        majorVersion = version & 0xFF;
-        minorVersion = (version >> 8) & 0xFF;
-        platformVersion = (majorVersion << 8) + minorVersion;
+    DWORD osVersion = GetVersion();
+    minorVersion = (osVersion >> 8) & 0xFF;
+    // buildNumber = osVersion >> 16;
+    // note: the C++ code above will be compiled to:
+    // ==========================
+    // mov     %eax,%ecx
+    // shr     $0x10,%ecx ; this should be osVersion >> 16;
+    // and     $0xff,%ecx
+    // ==========================
+    // which is close enough to
+    // ==========================
+    // mov     0x514434,%eax
+    // shrl    $0x10,0x514434 ; this should be osVersion >> 16;
+    // and     $0xff,%eax
+    // ==========================
+    // but somehow, removing/commenting it out gives slightly higher matching percentage (by 0.x%)
+    majorVersion = osVersion & 0xFF;
+    platformVersion = (majorVersion << 8) + minorVersion;
     
+    __try {
         FUN_004e4ed0();
         
         if (__mtinit() == 0) {
@@ -56,8 +71,7 @@ int entry(void)
         LPSTR applicationArguments = commandLine;
         if (*applicationArguments == '"') {
             ++applicationArguments;
-            while (*applicationArguments != '\0' &&
-                   *applicationArguments != '"') {
+            while (*applicationArguments != '\0' && *applicationArguments != '"') {
                 unsigned char character = (unsigned char)*applicationArguments;
                 if (FUN_004e42d0((unsigned int)character) != 0) {
                     ++applicationArguments;
@@ -67,14 +81,10 @@ int entry(void)
             if (*applicationArguments == '"') {
                 ++applicationArguments;
             }
-        } else if (*applicationArguments > ' ') {
-            while (*applicationArguments > ' ') {
+        } else {
+            while (*applicationArguments != ' ') {
                 ++applicationArguments;
             }
-        }
-    
-        while (*applicationArguments != '\0' && *applicationArguments <= ' ') {
-            ++applicationArguments;
         }
     
         STARTUPINFOA startupInfo = {0};
@@ -86,12 +96,11 @@ int entry(void)
         }
     
         HINSTANCE instance = GetModuleHandleA(NULL);
-        int status = FUN_00404240(instance, NULL, applicationArguments, showCommand);
+        int status = init_gui_window(instance, NULL, applicationArguments, showCommand);
         FUN_004e3f50((unsigned int)status);
         return status;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {
         return -1;
     }
-    
 }
