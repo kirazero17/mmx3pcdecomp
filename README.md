@@ -23,6 +23,7 @@ Since there's barely any information on the programming and build toolchain for 
 │   ├── non-matching/        Assembly still being reconstructed
 │   └── partially-matching/  Assembly with an incomplete match
 ├── target_obj/               MASM-converted target assembly and COFF objects
+├── objdiff_artifacts/        Generated objdiff configuration and report
 ├── ghidra_project/          Local Ghidra project files
 ├── include/                 Shared headers and declarations
 ├── src/                     Decompiled C/C++ source code
