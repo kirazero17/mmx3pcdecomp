@@ -1,13 +1,12 @@
-non_lib_named_functions:
+non_matching_named_functions:
   heap_init_wrapper: 
     address: "0x004e4ed0"
-    matching: "No"
   app_exit: 
     address: "0x004e3f90"
-    matching: "No"
   exit_wrapper: 
     address: "0x004e3f50"
-    matching: "No"
+
+partial_matching_named_functions:
   entry_point: 
     address: "0x004e2910"
     matching: "Partial"

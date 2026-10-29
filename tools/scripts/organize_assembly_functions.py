@@ -26,11 +26,9 @@ def read_classifications(path):
         if section.startswith("library_functions:"):
             for match in INLINE_ADDRESS_RE.finditer(section):
                 classifications[match.group(1).lower()] = "library"
-        elif section.startswith("non_lib_named_functions:"):
+        elif section.startswith("partial_matching_named_functions:"):
             entries = re.split(r"(?m)^  (?=\S)", section)
             for entry in entries:
-                if 'matching: "Partial"' not in entry:
-                    continue
                 match = ADDRESS_RE.search(entry)
                 if match:
                     classifications[match.group(1).lower()] = "partially-matching"

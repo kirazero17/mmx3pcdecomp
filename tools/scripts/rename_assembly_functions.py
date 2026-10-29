@@ -28,12 +28,25 @@ def read_function_names(path):
             name = match.group(1) or match.group(2)
             names[match.group(3).lower()] = name
 
-    non_library = text.split("library_functions:", 1)[0]
-    for match in NAMED_BLOCK_RE.finditer(non_library):
-        body = match.group(2)
-        address = re.search(r'(?m)^\s+address:\s*"0x([0-9a-fA-F]+)"', body)
-        if address:
-            names[address.group(1).lower()] = match.group(1).strip()
+    named_sections = (
+        "non_matching_named_functions:",
+        "partial_matching_named_functions:",
+    )
+    for section_name in named_sections:
+        section_start = text.find(section_name)
+        if section_start < 0:
+            continue
+        section_end = text.find("\n\n", section_start)
+        section = text[section_start:] if section_end < 0 else text[
+            section_start:section_end
+        ]
+        for match in NAMED_BLOCK_RE.finditer(section):
+            body = match.group(2)
+            address = re.search(
+                r'(?m)^\s+address:\s*"0x([0-9a-fA-F]+)"', body
+            )
+            if address:
+                names[address.group(1).lower()] = match.group(1).strip()
 
     return names
 
