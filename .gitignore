@@ -1,4 +1,5 @@
 target_asm/
+target_obj/
 ghidra_project/
 **/__pycache__/
 current_asm/

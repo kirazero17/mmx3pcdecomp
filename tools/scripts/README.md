@@ -44,3 +44,14 @@ python tools\scripts\build_partial_functions.py
 ```
 
 Use `--dry-run` to print the compiler commands without building.
+
+## Assemble target listings
+
+Convert the Ghidra x86 listings under `target_asm\partially-matching` to MASM
+and assemble them as COFF objects:
+
+```powershell
+python tools\scripts\assemble_target_asm.py
+```
+
+The converted sources and objects are written to `target_obj`.
