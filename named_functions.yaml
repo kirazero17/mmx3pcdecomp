@@ -9,10 +9,12 @@ non_matching_named_functions:
 partial_matching_named_functions:
   entry_point: 
     address: "0x004e2910"
-    matching: "Partial"
+    cpp_src_location: 
+      file: "src/mains/main.cpp"
   init_gui_window: 
     address: "0x00404240"
-    matching: "Partial"
+    cpp_src_location: 
+      file: "src/mains/init_gui_window.cpp"
 
 library_functions:
   AfxGetStaticModuleState: "0x004bd41a"
