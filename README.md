@@ -15,7 +15,7 @@ Since there's barely any information on the programming and build toolchain for 
 
 ```text
 .
-├── asm/
+├── target_asm/              Assembly files taken from ghidra
 │   ├── library/             Identified library and CRT functions
 │   ├── matching/            Assembly that matches the target
 │   ├── non-matching/        Assembly still being reconstructed
