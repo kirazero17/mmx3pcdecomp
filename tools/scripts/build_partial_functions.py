@@ -93,7 +93,7 @@ def main():
             "/Ob0",
             "/GX",
             "/c",
-            "/FAcs",
+            # "/FAs",
             "/Fa{}".format(assembly),
             "/Fo{}".format(object_file),
             str(source),
