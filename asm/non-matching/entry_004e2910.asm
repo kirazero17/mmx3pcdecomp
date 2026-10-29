@@ -15,7 +15,7 @@
     PUSH     ESI
     PUSH     EDI
     MOV      dword ptr [EBP + -0x18], ESP
-    CALL     dword ptr [->KERNEL32.DLL::GetVersion]
+    CALL     dword ptr [0x00893428]
     MOV      [0x00514434], EAX
     XOR      EAX, EAX
     MOV      AL, [0x00514435]
@@ -27,20 +27,20 @@
     SHL      EAX, 0x8
     ADD      EAX, dword ptr [0x00514440]
     MOV      [0x00514438], EAX
-    CALL     fun_004e4ed0
-    CALL     fun_004e4d30
+    CALL     0x004e4ed0
+    CALL     0x004e4d30
     TEST     EAX, EAX
     JNZ      LAB_004e2989
     PUSH     0x10
-    CALL     fun_004e2ab0
+    CALL     0x004e2ab0
     ADD      ESP, 0x4
 LAB_004e2989:
     MOV      dword ptr [EBP + -0x4], 0x0
-    CALL     fun_004e4b50
-    CALL     fun_004e4b40
-    CALL     dword ptr [->KERNEL32.DLL::GetCommandLineA]
+    CALL     0x004e4b50
+    CALL     0x004e4b40
+    CALL     dword ptr [0x00893424]
     MOV      [0x00892554], EAX
-    CALL     fun_004e4690
+    CALL     0x004e4690
     MOV      [0x00514104], EAX
     TEST     EAX, EAX
     JZ       LAB_004e29bc
@@ -48,12 +48,12 @@ LAB_004e2989:
     JNZ      LAB_004e29c6
 LAB_004e29bc:
     PUSH     -0x1
-    CALL     fun_004e3f50
+    CALL     0x004e3f50
     ADD      ESP, 0x4
 LAB_004e29c6:
-    CALL     fun_004e4410
-    CALL     fun_004e4330
-    CALL     fun_004e3f20
+    CALL     0x004e4410
+    CALL     0x004e4330
+    CALL     0x004e3f20
     MOV      ESI, dword ptr [0x00892554]
     MOV      AL, byte ptr [ESI]
     CMP      AL, 0x22
@@ -77,7 +77,7 @@ LAB_004e29f6:
     XOR      EAX, EAX
     MOV      AL, BL
     PUSH     EAX
-    CALL     fun_004e42d0
+    CALL     0x004e42d0
     ADD      ESP, 0x4
     TEST     EAX, EAX
     JZ       LAB_004e2a0e
@@ -104,7 +104,7 @@ LAB_004e2a2a:
     MOV      dword ptr [EBP + -0x44], 0x0
     LEA      EAX, [EBP + -0x70]
     PUSH     EAX
-    CALL     dword ptr [->KERNEL32.DLL::GetStartupInfoA]
+    CALL     dword ptr [0x00893420]
     TEST     byte ptr [EBP + -0x44], 0x1
     MOV      EAX, 0xa
     JZ       LAB_004e2a4e
@@ -115,15 +115,20 @@ LAB_004e2a4e:
     PUSH     ESI
     PUSH     0x0
     PUSH     0x0
-    CALL     dword ptr [->KERNEL32.DLL::GetModuleHandleA]
+    CALL     dword ptr [0x008933d0]
     PUSH     EAX
-    CALL     fun_00404240
+    CALL     0x00404240
     PUSH     EAX
-    CALL     fun_004e3f50
+    CALL     0x004e3f50
     JMP      LAB_004e2a8f
 LAB_004e2a8f:
     ADD      ESP, 0x4
     MOV      dword ptr [EBP + -0x4], 0xffffffff
     MOV      EAX, dword ptr [EBP + -0x10]
     POP      EDI
-    MOV     
+    MOV      FS:[0x0], EAX
+    POP      ESI
+    POP      EBX
+    MOV      ESP, EBP
+    POP      EBP
+    RET      
