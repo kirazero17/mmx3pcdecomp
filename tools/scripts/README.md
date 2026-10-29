@@ -33,3 +33,14 @@ python tools\scripts\rename_assembly_functions.py --apply
 ```
 
 Both scripts default to dry-run mode. Use `--root` to specify another repository root.
+
+## Build partial matches
+
+Build the sources listed under `partial_matching_named_functions` and export
+their assembly to `current_asm\partially_matching`:
+
+```powershell
+python tools\scripts\build_partial_functions.py
+```
+
+Use `--dry-run` to print the compiler commands without building.
