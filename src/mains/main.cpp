@@ -11,7 +11,7 @@ LPSTR environmentBlock;
 extern "C" {
     extern IsMbbLeadByte FUN_004e42d0;
 
-    void __cdecl FUN_004e4ed0();
+    void __cdecl heap_init_wrapper();
     int __cdecl __mtinit();
     void __cdecl __amsg_exit(unsigned int status);
     void __cdecl FUN_004e4b50();
@@ -46,7 +46,7 @@ int entry(void)
     // but somehow, removing/commenting it out gives slightly higher matching percentage (by 0.x%)
     majorVersion = *((BYTE *)&osVersion);
     platformVersion = (majorVersion << 8) + minorVersion;
-    FUN_004e4ed0();
+    heap_init_wrapper();
     
     if (__mtinit() == 0) {
         __amsg_exit(16);
