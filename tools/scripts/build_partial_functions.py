@@ -83,16 +83,14 @@ def main():
         if not source.exists():
             raise SystemExit("Source file not found: {}".format(source))
 
-        assembly = output_dir / "{}_{}.asm".format(
-            function["name"], function["address"]
-        )
-        object_file = output_dir / "{}_{}.obj".format(
-            function["name"], function["address"]
-        )
+        assembly = output_dir / "{}.asm".format(function["name"])
+        object_file = output_dir / "{}.obj".format(function["name"])
         command = [
             args.cl,
+            "/nologo",
             "/TP",
             "/O2",
+            "/Ob0",
             "/GX",
             "/c",
             "/FAcs",

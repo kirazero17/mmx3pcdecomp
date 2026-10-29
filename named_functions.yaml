@@ -7,7 +7,7 @@ non_matching_named_functions:
     address: "0x004e3f50"
 
 partial_matching_named_functions:
-  entry_point: 
+  entry: 
     address: "0x004e2910"
     cpp_src_location: 
       file: "src/mains/main.cpp"
