@@ -5,6 +5,12 @@ non_matching_named_functions:
     address: "0x004e3f90"
   exit_wrapper: 
     address: "0x004e3f50"
+  prepare_heap_wrapper:
+    address: "0x004e2700"
+  prepare_heap:
+    address: "0x004e2cc0"
+  heap_alloc_wrapper:
+    address: "0x004e2d00"
 
 partial_matching_named_functions:
   entry: 

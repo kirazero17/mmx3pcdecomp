@@ -46,7 +46,7 @@ def assembly_address(path):
 
 def find_moves(root):
     classifications = read_classifications(root / "named_functions.yaml")
-    source = root / "asm" / "non-matching"
+    source = root / "target_asm" / "non-matching"
     moves = []
 
     for assembly in sorted(source.glob("*.asm")):
@@ -54,7 +54,7 @@ def find_moves(root):
         destination_name = classifications.get(address)
         if destination_name is None:
             continue
-        destination = root / "asm" / destination_name / assembly.name
+        destination = root / "target_asm" / destination_name / assembly.name
         moves.append((assembly, destination))
 
     return moves
