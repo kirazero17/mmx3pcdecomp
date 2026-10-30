@@ -17,7 +17,6 @@ extern "C" {
     void __cdecl FUN_004e4b50();
     void __cdecl FUN_004e4b40();
     LPSTR __cdecl FUN_004e4690();
-    void __cdecl exit_wrapper(unsigned int status);
     void __cdecl __setargv();
     void __cdecl FUN_004e4330();
     int __cdecl __cinit(void);
@@ -60,7 +59,7 @@ int entry(void)
         environmentBlock = FUN_004e4690();
         
         if (environmentBlock == NULL || commandLine == NULL) {
-            exit_wrapper((unsigned int)-1);
+            _exit((unsigned int)-1);
         }
     
         __setargv();
@@ -97,7 +96,7 @@ int entry(void)
     
         HINSTANCE instance = GetModuleHandleA(NULL);
         int status = init_gui_window(instance, NULL, applicationArguments, showCommand);
-        exit_wrapper((unsigned int)status);
+        _exit((unsigned int)status);
         return status;
     }
     __except (EXCEPTION_EXECUTE_HANDLER) {

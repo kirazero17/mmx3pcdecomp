@@ -1,12 +1,6 @@
 non_matching_named_functions:
   heap_init_wrapper: 
     address: "0x004e4ed0"
-  app_exit: 
-    address: "0x004e3f90"
-  exit_wrapper: 
-    address: "0x004e3f50"
-  prepare_heap_wrapper:
-    address: "0x004e2700"
   prepare_heap:
     address: "0x004e2cc0"
   heap_alloc_wrapper:
@@ -21,6 +15,10 @@ partial_matching_named_functions:
     address: "0x00404240"
     cpp_src_location: 
       file: "src/mains/init_gui_window.cpp"
+  prepare_heap_wrapper:
+    address: "0x004e2700"
+    cpp_src_location:
+      file: "src/mains/prepare_heap_wrapper.cpp"
 
 library_functions:
   AfxGetStaticModuleState: "0x004bd41a"
@@ -35,7 +33,9 @@ library_functions:
   "__close_lk": "0x004e66e0"
   "__dosmaperr": "0x004e5200"
   "__endthread": "0x004e2c30"
-  "__exit": "0x004e3f70"
+  "_Exit": "0x004e3f70"
+  "_exit": "0x004e3f90"
+  "__exit_wrapper": "0x004e3f50"
   "__fclose_lk": "0x004e62a0"
   "__fflush_lk": "0x004e5d30"
   "__FF_MSGBANNER": "0x004e4fd0"
